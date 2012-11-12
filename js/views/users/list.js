@@ -2,13 +2,13 @@ define([
   'jquery',
   'underscore',
   'backbone',
-  'bforum',
+  'inspire',
   // Using the Require.js text! plugin, we are loaded raw text
   // which will be used as our views primary template
   'text!templates/user/list.html'
-], function($, _, Backbone, BForum, userListTemplate){
+], function($, _, Backbone, inspire, userListTemplate){
 	
-  var UserListView = BForum.View.extend({
+  var UserListView = inspire.View.extend({
     el: $("#container"),
     render: function(){
       console.log('Users was rendered');

@@ -4,7 +4,7 @@ require.config({
     underscore: 'libs/underscore/underscore',
     backbone: 'libs/backbone/backbone',
     handlebars: 'libs/handlebars/handlebars',
-    bforum: 'bforum',
+    inspire: 'inspire',
     masterview: 'views/masterview',
     mastermodel: 'models/mastermodel',
     templates: '../templates'
@@ -17,24 +17,21 @@ require.config({
   		deps: ["underscore", "jquery"],
   		exports: "Backbone"
   	},
-  	bforum: {
+  	inspire: {
   		deps: ["underscore", "jquery", "backbone", "handlebars"],
-  		exports: "BForum"
+  		exports: "Inspire"
   	}
   }
 
 });
 
 define([
-  'router', // Request router.js
-  'bforum',
-], function(Router, BForum){
+  'inspire',
+], function(Router, Inspire){
     
-    BForum.init({
-    	Router: Router
-    });
+    Inspire.init();
     
-    console.log('BForum initalized');
+    console.log('Inspire initalized');
     
     
 });

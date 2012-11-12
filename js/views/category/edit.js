@@ -2,14 +2,14 @@ define([
   'jquery',
   'underscore',
   'backbone',
-  'bforum',
+  'inspire',
   // Pull in the Collection module from above
   'collections/projects',
   'text!templates/project/list.html'
-], function($, _, Backbone, BForum, ProjectsCollection, projectsListTemplate){
+], function($, _, Backbone, Inspire, ProjectsCollection, projectsListTemplate){
 	
 	
-  var ProjectListView = BForum.View.extend({
+  var ProjectListView = Inspire.View.extend({
     el: $("#container"),
     render: function(){
       console.log('Projects was rendered');
