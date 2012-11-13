@@ -2,13 +2,15 @@ define([
   'jquery',
   'underscore',
   'backbone',
-  'views/users/list'
+  'views/users/list',
+  'views/forum/view'
   //'views/projects/list',
-], function($, _, Backbone, UserListView){
+], function($, _, Backbone, UserListView, ForumView){
   var AppRouter = Backbone.Router.extend({
     routes: {
       // Define some URL routes
       'users': 'showUsers',
+      'forum': 'showForum',
 
       // Default
       '*actions': 'defaultAction'
@@ -26,6 +28,13 @@ define([
       userListView.render();
       
     });
+    
+    
+    app_router.on('route:showForum', function(){
+    	var forum = new ForumView();
+    	forum.render();
+    })
+    
     app_router.on('route:defaultAction', function(actions){
       // We have no matching route, lets just log what the URL was
       console.log('No route:', actions);

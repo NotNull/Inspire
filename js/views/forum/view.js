@@ -3,24 +3,26 @@ define([
   'underscore',
   'backbone',
   'inspire',
+  'handlebars',
   // Pull in the Collection module from above
-  'collections/projects',
-  'text!templates/project/list.html'
-], function($, _, Backbone, Inspire, ProjectsCollection, projectsListTemplate){
+  'models/forum',
+  'text!templates/forum/view.html'
+], function($, _, Backbone, Inspire, Handlebars, Forum, projectViewTemplate){
 	
 	
-  var ProjectListView = Inspire.View.extend({
+  var ForumView = Inspire.View.extend({
     el: $("#container"),
     render: function(){
-      console.log('Projects was rendered');
-      this.collection = new ProjectsCollection();
-      this.collection.add({ name: "Ginger Kid"});
+    	
+	  Forum.categories.fetch();
+      
       // Compile the template using Underscores micro-templating
-      var compiledTemplate = _.template( projectsListTemplate, { projects: this.collection.models } );
-      this.$el.html(compiledTemplate);
+      var compiledTemplate = Handlebars.compile(projectViewTemplate);
+      
+      this.$el.html(compiledTemplate(Forum.categories.models));
       
     }
   });
   // Returning instantiated views can be quite useful for having "state"
-  return ProjectListView;
+  return ForumView;
 });

@@ -26,10 +26,13 @@ require.config({
 });
 
 define([
-  'inspire',
+	'router',
+  	'inspire',
 ], function(Router, Inspire){
     
-    Inspire.init();
+    Inspire.init({
+    	Router: Router
+    });
     
     console.log('Inspire initalized');
     

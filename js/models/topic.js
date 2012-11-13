@@ -1,7 +1,8 @@
 define([
   'underscore',
-  'backbone'
-], function(_, Backbone){
+  'backbone',
+  'posts'
+], function(_, Backbone, Posts){
   var Topic = Backbone.Model.extend({
     defaults: {
     	id: null,
@@ -13,6 +14,10 @@ define([
       	created_at: new Date(),
       	updated_at: new Date(),
       	
+    },
+    initialize: function(){
+    	this.posts = new Posts;
+    	this.posts.on('reset', this.updateCount);
     }
   });
   // Return the model for the module
