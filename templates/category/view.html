@@ -1,1 +1,11 @@
-<!-- View a category and it's topics -->
+<div id="{{id}}" class="forum ui-widget ui-accordion">
+<label class="title ui-accordion-header ui-helper-reset ui-state-default ui-accordion-icons ui-accordion-header-active ui-state-active ui-corner-top ui-state-hover">{{title}}</label> 
+	
+{{#each topics}}
+<dl id="{{this.id}}" class="topic list ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom ui-accordion-content-active">
+<dt>{{this.title}}</dt>
+<dd>A description</dd>
+</dl>
+{{/each}}
+
+</div>

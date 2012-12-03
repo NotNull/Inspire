@@ -1,1 +1,14 @@
-<!-- Show a Topic and it's Posts -->
+<div id="{{id}}" class="forum ui-widget ui-accordion">
+	<div class="header ui-accordion-header ui-helper-reset ui-state-default ui-accordion-icons ui-accordion-header-active ui-state-active ui-corner-top ui-state-hover">
+		<span class="ui-icon ui-icon-circle-triangle-w"> </span>
+		<label class="title">{{title}}</label> 
+	</div>
+
+{{#each posts}}
+<dl class="ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom ui-accordion-content-active">
+<dt>{{this.title}}</dt>
+<dd>A description</dd>
+</dl>
+{{/each}}
+
+</div>

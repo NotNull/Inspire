@@ -1,9 +1,14 @@
 define([
+  'exports',
   'underscore',
-  'backbone',
-  'collections/topics'
-], function(_, Backbone, Topics){
-  var Category = Backbone.Model.extend({
+  'inspire',
+  'mastermodel',
+  'collections/topics',
+  'models/forum'
+], function(exports, _, Inspire, MasterModel, Topics, Forum){
+	
+  var Category = MasterModel.extend({
+  	idAttribute: 'id',
     defaults: {
     	id: null,
     	forum_id: null,
@@ -11,9 +16,14 @@ define([
     },
     initialize: function(){
     	this.topics = new Topics;
-    	this.topics.on('reset', this.updateCount);
-    }
+    	
+    	this.forum = new Forum;
+    }, 
+    urlRoot: 'category/'
   });
   // Return the model for the module
+  
+  exports.Category = Category;
+  
   return Category;
 });

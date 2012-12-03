@@ -1,26 +1,35 @@
 define([
   'jquery',
   'underscore',
-  'backbone',
   'inspire',
-  // Pull in the Collection module from above
-  'collections/projects',
-  'text!templates/project/list.html'
-], function($, _, Backbone, Inspire, ProjectsCollection, projectsListTemplate){
+  'handlebars',
+  'collections/posts',
+  'views/post/view'
+], function($, _, Inspire, Handlebars, Collection, View){
 	
-	
-  var ProjectListView = Inspire.View.extend({
-    el: $("#container"),
-    render: function(){
-      console.log('Projects was rendered');
-      this.collection = new ProjectsCollection();
-      this.collection.add({ name: "Ginger Kid"});
-      // Compile the template using Underscores micro-templating
-      var compiledTemplate = _.template( projectsListTemplate, { projects: this.collection.models } );
-      this.$el.html(compiledTemplate);
-      
-    }
-  });
-  // Returning instantiated views can be quite useful for having "state"
-  return ProjectListView;
+	var ListView = Inspire.View.extend({
+		  initialize : function() {
+		    var root = this;
+		    this._childViews = [];
+		 
+		    this.collection.each(function(model) {
+		      root._childViews.push(new View({
+		        model : model
+		      }));
+		    });
+		  },
+		 
+		  render : function() {
+		    var root = this;
+		    // Clear out this element.
+		    $(this.el).empty();
+		 
+		    // Render each sub-view and append it to the parent view's element.
+		    _(this._childViews).each(function(dv) {
+		      $(root.el).append(dv.render().el);
+		    });
+		  }
+	});
+	  // Returning instantiated views can be quite useful for having "state"
+	return ListView;
 });

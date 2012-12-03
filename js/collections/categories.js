@@ -7,7 +7,10 @@ define([
 ], function($, _, Backbone, Inspire, Model){
 	
 	var Categories = Backbone.Collection.extend({
-	  model: Model
+	  model: Model,
+	  url: function() {
+	  	return '/categories';
+	  }
 	});
 	
 	return Categories;

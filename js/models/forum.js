@@ -1,18 +1,24 @@
 define([
+  'exports',
   'underscore',
-  'backbone',
+  'inspire',
   'collections/categories'
-], function(_, Backbone, Categories){
-  var Forum = Backbone.Model.extend({
+], function(exports, _, Inspire, Categories){
+
+  var Forum = Inspire.Backbone.Model.extend({
+  	idAttribute: 'id',
     defaults: {
     	id: null,
       	title: "New Forum"
     },
-    initialize : function(){
+    initialize: function(){
     	this.categories = new Categories;
-    	this.categories.on('reset', this.updateCounts);
-    }
+    },
+    urlRoot: 'forum/'
   });
   // Return the model for the module
+  
+  exports.Forum = Forum;
+  
   return Forum;
 });

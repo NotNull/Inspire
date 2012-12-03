@@ -1,9 +1,14 @@
 define([
+  'exports',
   'underscore',
-  'backbone',
-  'posts'
-], function(_, Backbone, Posts){
-  var Topic = Backbone.Model.extend({
+  'mastermodel',
+  'inspire',
+  'collections/posts',
+  'models/category'
+], function(exports, _, MasterModel, Inspire, Posts, Category){
+	
+  var Topic = MasterModel.extend({
+  	idAttribute: 'id',
     defaults: {
     	id: null,
     	category_id: null,
@@ -17,9 +22,14 @@ define([
     },
     initialize: function(){
     	this.posts = new Posts;
-    	this.posts.on('reset', this.updateCount);
-    }
+    	
+    	this.category = new Category;
+    },
+    urlRoot: '/topic'
   });
+  
+  exports.Topic = Topic;
+  
   // Return the model for the module
   return Topic;
 });

@@ -1,13 +1,15 @@
 define([
   'jquery',
   'underscore',
-  'backbone',
   'inspire',
   'models/forum'
-], function($, _, Backbone, Inspire, Model){
+], function($, _, Inspire, Model){
 	
-	var Forums = Backbone.Collection.extend({
-	  model: Model
+	var Forums = Inspire.Backbone.Collection.extend({
+	  model: Model,
+	  url: function() {
+	  	return '/forums';
+	  }
 	});
 	
 	return Forums;
